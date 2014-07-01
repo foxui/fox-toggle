@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="css/fox-toggle.css"/>
+
+<fox-element name="fox-toggle">
+    <script>
+    (function(env){
+
+        var activeClass = 'active';
+
+        function fireEvent(type) {
+            fox.fireEvent(this, type, {
+                detail: this
+            });
+        }
+
+        function activeChanged() {
+            this.active ? this.classList.add(activeClass) :
+            this.classList.remove(activeClass);
+        }
+
+        fox('fox-toggle', {
+            active: false,
+
+            lifecycle: {
+                created: function() {
+                    activeChanged.call(this);
+                },
+
+                activeChanged: function() {
+                    activeChanged.call(this);
+
+                    fireEvent.call(this, 'change');
+                }
+            },
+
+            events: {
+                'touchstart': function(){
+
+                    var android = /android/i.test(navigator.userAgent);
+
+                    !android && this.classList.add('ing');
+                },
+
+                'touchend': function(){
+                    this.classList.remove('ing');
+                    this.active = !this.active;
+                }
+            },
+
+            accessors: {
+                active: {
+                    attribute: {
+                        boolean: true
+                    }
+                }
+            }
+        });
+    })(this);
+    </script>
+</fox>

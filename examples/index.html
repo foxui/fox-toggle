@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>Test of fox-toggle</title>
+        <link rel="stylesheet" href="../../fox-core/dist/foxui.css">
+        <script src="../../fox-core/dist/foxui.js"></script>
+        <link rel="import" href="../../fox-toolbar/dist/fox-toolbar.html"/>
+        <link rel="import" href="../../fox-page/dist/fox-page.html"/>
+        <link rel="import" href="../../fox-icon/dist/fox-icon.html"/>
+        <link rel="import" href="../../fox-page-content/dist/fox-page-content.html"/>
+        <link rel="import" href="../dist/fox-toggle.html"/>
+        <style>
+            body{
+                padding: 10px;
+                -webkit-transition: opacity .1s linear;
+            }
+
+            body[unresolved]{
+                opacity: 0;
+            }
+
+            fox-page{
+                text-align: center;
+            }
+
+        </style>
+        <style>
+
+        ul, li{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li{
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+            background-color: #eee;
+        }
+
+        li.selected{
+            background-color: #fff;
+        }
+
+
+        li:last-child{
+            border-bottom: none;
+        }
+
+        </style>
+    </head>
+    <body unresolved>
+        <fox-toolbar title="fox-toggle">
+        </fox-toolbar>
+
+        <fox-page>
+            <fox-page-content>
+
+                <ul>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                    <li class="selected">
+                        <fox-toggle active></fox-toggle>
+                    </li>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                    <li>
+                        <fox-toggle></fox-toggle>
+                    </li>
+                </ul>
+
+            </fox-page-content>
+        </fox-page>
+
+        <script>
+            document.addEventListener('HTMLImportsLoaded', function(){
+                document.body.removeAttribute('unresolved');
+            }, false);
+
+            document.addEventListener('change', function(e){
+                if (e.target.tagName.toLowerCase() === 'fox-toggle') {
+                    e.target.parentNode.classList[e.target.active?'add':'remove']('selected');
+                }
+            }, false);
+
+            // var pages = document.querySelectorAll('fox-page');
+            // pages = [].slice.apply(pages);
+
+            // pages.forEach(function(page) {
+            //     page.addEventListener('beforeshow', function() {
+            //         var data = this.querySelector('fox-ajax');
+
+            //         !data.response && data.go();
+            //     }, false);
+            // });
+        </script>
+    </body>
+</html>
